@@ -1,0 +1,54 @@
+version: "3.8"
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: form-wizard-frontend
+    ports:
+      - "5173:5173"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    depends_on:
+      - api-step1
+      - api-step2
+    networks:
+      - form-wizard-network
+
+  api-step1:
+    image: node:20-alpine
+    container_name: form-wizard-api-step1
+    working_dir: /app
+    ports:
+      - "4001:4001"
+    volumes:
+      - ./db-step1.json:/app/db-step1.json:rw
+      - api-step1-data:/app/data
+    command: sh -c "mkdir -p /app/data && cp /app/db-step1.json /app/data/db-step1.json && npm install -g json-server && json-server --watch /app/data/db-step1.json --port 4001 --host 0.0.0.0"
+    networks:
+      - form-wizard-network
+
+  api-step2:
+    image: node:20-alpine
+    container_name: form-wizard-api-step2
+    working_dir: /app
+    ports:
+      - "4002:4002"
+    volumes:
+      - ./db-step2.json:/app/db-step2.json:rw
+      - api-step2-data:/app/data
+    command: sh -c "mkdir -p /app/data && cp /app/db-step2.json /app/data/db-step2.json && npm install -g json-server && json-server --watch /app/data/db-step2.json --port 4002 --host 0.0.0.0"
+    networks:
+      - form-wizard-network
+
+volumes:
+  api-step1-data:
+  api-step2-data:
+
+networks:
+  form-wizard-network:
+    driver: bridge
