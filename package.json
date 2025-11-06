@@ -32,10 +32,12 @@
     "@vitejs/plugin-react": "^4.3.1",
     "@vitest/coverage-v8": "^1.6.0",
     "@vitest/ui": "^1.6.0",
+    "concurrently": "^9.2.1",
     "eslint": "^8.57.0",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.7",
     "jsdom": "^24.0.0",
+    "json-server": "^1.0.0-beta.3",
     "typescript": "^5.5.4",
     "vite": "^5.4.2",
     "vitest": "^1.6.0"
