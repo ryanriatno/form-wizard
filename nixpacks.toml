@@ -1,0 +1,14 @@
+[phases.setup]
+nixPkgs = ["nodejs_20", "yarn-1_x"]
+
+[phases.install]
+cmds = ["yarn install --frozen-lockfile"]
+
+[phases.build]
+cmds = ["yarn run build"]
+
+# Start command is set per-service in Railway dashboard
+# Service 1: yarn start:step1
+# Service 2: yarn start:step2  
+# Frontend: yarn start:frontend
+

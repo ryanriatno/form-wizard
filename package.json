@@ -14,12 +14,22 @@
     "test:coverage": "vitest --coverage",
     "server:step1": "json-server --watch db-step1.json --port 4001",
     "server:step2": "json-server --watch db-step2.json --port 4002",
-    "server": "concurrently \"yarn server:step1\" \"yarn server:step2\""
+    "server": "concurrently \"yarn server:step1\" \"yarn server:step2\"",
+    "start": "node server-step1.js",
+    "start:step1": "node server-step1.js",
+    "start:step2": "node server-step2.js",
+    "start:both": "concurrently \"yarn start:step1\" \"yarn start:step2\"",
+    "start:frontend": "node server-frontend.js"
   },
   "dependencies": {
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^6.26.0"
+    "react-router-dom": "^6.26.0",
+    "json-server": "^1.0.0-beta.3",
+    "concurrently": "^9.2.1",
+    "serve": "^14.2.1",
+    "express": "^4.18.2",
+    "cors": "^2.8.5"
   },
   "devDependencies": {
     "@testing-library/dom": "^10.4.1",
@@ -35,12 +45,10 @@
     "@vitejs/plugin-react": "^4.3.1",
     "@vitest/coverage-v8": "^1.6.0",
     "@vitest/ui": "^1.6.0",
-    "concurrently": "^9.2.1",
     "eslint": "^8.57.0",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.7",
     "jsdom": "^24.0.0",
-    "json-server": "^1.0.0-beta.3",
     "typescript": "^5.5.4",
     "vite": "^5.4.2",
     "vitest": "^1.6.0"
