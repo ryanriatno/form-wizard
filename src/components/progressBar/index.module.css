@@ -1,0 +1,71 @@
+.progressBar {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.stepIndicator {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  flex-shrink: 0;
+  transition: all 0.3s;
+}
+
+.pending {
+  background-color: #e0e0e0;
+  color: #999;
+  border: 2px solid #ddd;
+}
+
+.in-progress {
+  background-color: #3498db;
+  color: white;
+  border: 2px solid #3498db;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.completed {
+  background-color: #27ae60;
+  color: white;
+  border: 2px solid #27ae60;
+}
+
+.error {
+  background-color: #e74c3c;
+  color: white;
+  border: 2px solid #e74c3c;
+}
+
+.stepLabel {
+  font-size: 0.875rem;
+  color: #333;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@media (max-width: 768px) {
+  .stepLabel {
+    font-size: 0.8125rem;
+  }
+}
+
