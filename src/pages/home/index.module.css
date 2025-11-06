@@ -4,6 +4,43 @@
   align-items: center;
   justify-content: center;
   text-align: center;
+  min-height: 60vh;
+  padding: 2rem;
+}
+
+.links {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.link {
+  padding: 0.75rem 1.5rem;
+  background-color: #3498db;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.link:hover {
+  background-color: #2980b9;
+}
+
+@media (max-width: 768px) {
+  .links {
+    flex-direction: column;
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .link {
+    width: 100%;
+    text-align: center;
+  }
 }
 
 .title {
