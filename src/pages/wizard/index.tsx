@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import { Step1 } from "./step1";
 import { Step2, type Step2Data } from "./step2";
 import { useDraftAutoSave, useDraftRestore } from "@/hooks/useDraftAutoSave";
@@ -17,6 +17,7 @@ interface Step1Data {
 
 export default function Wizard() {
   const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
   const roleParam = searchParams.get("role") || "admin";
   const role: RoleType = roleParam === "ops" ? "ops" : "admin";
 
@@ -79,14 +80,24 @@ export default function Wizard() {
     }
   }, [role, currentStep]);
 
+  const handleRoleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const newRole = e.target.value;
+    navigate(`/wizard?role=${newRole}`);
+  };
+
   return (
     <div className={styles.wizard}>
       <div className={styles.wizard__header}>
         <h1 className={styles.wizard__title}>Employee Wizard</h1>
         <div className={styles.wizard__meta}>
-          <span className={styles["wizard__role-badge"] as string}>
-            Role: {role === "admin" ? "Admin" : "Ops"}
-          </span>
+          <select
+            value={role}
+            onChange={handleRoleChange}
+            className={styles["wizard__role-select"]}
+          >
+            <option value="admin">Admin</option>
+            <option value="ops">Ops</option>
+          </select>
           <button
             type="button"
             onClick={handleClearDraft}
