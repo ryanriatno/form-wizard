@@ -14,6 +14,7 @@ interface Step1Data {
   email: string;
   department: string;
   role: Role;
+  employeeId: string;
 }
 
 interface Step1Props {
@@ -28,17 +29,22 @@ export function Step1({ initialData, onNext, onDataChange }: Step1Props) {
     email: initialData?.email || "",
     department: initialData?.department || "",
     role: initialData?.role || "Ops",
+    employeeId: initialData?.employeeId || "",
   });
 
   const [errors, setErrors] = useState<ValidationErrors>({});
-  const [selectedDepartment, setSelectedDepartment] =
-    useState<Department | null>(null);
   const employeeId = useEmployeeId(formData.department);
   const { validateStep1 } = useFormValidation();
 
   useEffect(() => {
     onDataChange(formData);
   }, [formData, onDataChange]);
+
+  useEffect(() => {
+    if (employeeId) {
+      setFormData((prev) => ({ ...prev, employeeId }));
+    }
+  }, [employeeId]);
 
   const handleChange = (field: keyof Step1Data, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
@@ -48,7 +54,6 @@ export function Step1({ initialData, onNext, onDataChange }: Step1Props) {
   };
 
   const handleDepartmentSelect = (dept: Department) => {
-    setSelectedDepartment(dept);
     handleChange("department", dept.name);
   };
 
@@ -59,7 +64,7 @@ export function Step1({ initialData, onNext, onDataChange }: Step1Props) {
       setErrors(validationErrors);
       return;
     }
-    onNext(formData);
+    onNext({ ...formData, employeeId });
   };
 
   const isFormValid =

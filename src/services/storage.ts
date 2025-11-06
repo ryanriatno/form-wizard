@@ -1,3 +1,5 @@
+import type { EmploymentType } from "@/types/employee";
+
 const DRAFT_ADMIN_KEY = "draft_admin";
 const DRAFT_OPS_KEY = "draft_ops";
 
@@ -5,15 +7,15 @@ export type RoleType = "admin" | "ops";
 
 export interface DraftData {
   step1?: {
-    fullName: string;
-    email: string;
-    department: string;
-    role: string;
+    fullName?: string;
+    email?: string;
+    department?: string;
+    role?: string;
   };
   step2?: {
-    employmentType: string;
-    officeLocation: string;
-    notes: string;
+    employmentType?: EmploymentType;
+    officeLocation?: string;
+    notes?: string;
     photo?: string;
   };
 }

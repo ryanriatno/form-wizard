@@ -3,6 +3,7 @@ import Home from "@/pages/home";
 import Layout from "@/components/layouts";
 import styles from "@/App.module.css";
 import Employees from "@/pages/employees";
+import Wizard from "@/pages/wizard";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="employees" element={<Employees />} />
+          <Route path="wizard" element={<Wizard />} />
         </Route>
       </Routes>
     </div>
