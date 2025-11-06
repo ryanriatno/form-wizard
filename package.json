@@ -16,8 +16,8 @@
     "server:step2": "json-server --watch db-step2.json --port 4002",
     "server": "concurrently \"yarn server:step1\" \"yarn server:step2\"",
     "start": "node server-step1.js",
-    "start:step1": "node server-step1.js",
-    "start:step2": "node server-step2.js",
+    "start:step1": "yarn server:step1",
+    "start:step2": "yarn server:step2",
     "start:both": "concurrently \"yarn start:step1\" \"yarn start:step2\"",
     "start:frontend": "node server-frontend.js"
   },
