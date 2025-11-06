@@ -13,11 +13,16 @@
   border: 2px dashed #ddd;
   border-radius: 4px;
   padding: 1rem;
-  transition: border-color 0.2s;
+  transition: border-color 0.2s, background-color 0.2s;
 }
 
 .uploadArea:hover {
   border-color: #3498db;
+}
+
+.uploadArea.dragging {
+  border-color: #3498db;
+  background-color: #e8f4f8;
 }
 
 .fileInput {

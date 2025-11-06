@@ -17,19 +17,17 @@ export function FileUpload({
 }: FileUploadProps) {
   const [preview, setPreview] = useState<string | null>(value || null);
   const [error, setError] = useState<string | null>(null);
+  const [isDragging, setIsDragging] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-
-    // Validate file type
+  const processFile = async (file: File) => {
+    // only allow image files
     if (!file.type.startsWith("image/")) {
       setError("Please select an image file");
       return;
     }
 
-    // Validate file size (max 5MB)
+    // file size should be less than 5MB
     if (file.size > 5 * 1024 * 1024) {
       setError("File size must be less than 5MB");
       return;
@@ -47,6 +45,12 @@ export function FileUpload({
     }
   };
 
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    await processFile(file);
+  };
+
   const handleRemove = () => {
     setPreview(null);
     onChange("");
@@ -59,10 +63,37 @@ export function FileUpload({
     fileInputRef.current?.click();
   };
 
+  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(true);
+  };
+
+  const handleDragLeave = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(false);
+  };
+
+  const handleDrop = async (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(false);
+
+    const file = e.dataTransfer.files?.[0];
+    if (!file) return;
+    await processFile(file);
+  };
+
   return (
     <div className={styles.fileUpload}>
       {label && <label className={styles.label}>{label}</label>}
-      <div className={styles.uploadArea}>
+      <div
+        className={`${styles.uploadArea} ${isDragging ? styles.dragging : ""}`}
+        onDragOver={handleDragOver}
+        onDragLeave={handleDragLeave}
+        onDrop={handleDrop}
+      >
         <input
           ref={fileInputRef}
           type="file"
@@ -94,7 +125,7 @@ export function FileUpload({
         ) : (
           <div className={styles.placeholder} onClick={handleClick}>
             <span className={styles.placeholderText}>
-              Click to upload photo
+              {isDragging ? "Drop photo here" : "Click or drag to upload photo"}
             </span>
           </div>
         )}
@@ -103,4 +134,3 @@ export function FileUpload({
     </div>
   );
 }
-
