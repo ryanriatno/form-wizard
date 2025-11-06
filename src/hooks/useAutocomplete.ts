@@ -70,8 +70,15 @@ export function useAutocomplete<T>({
   };
 
   const handleBlur = () => {
-    // Delay to allow click events to fire first
     setTimeout(() => setIsOpen(false), 200);
+  };
+
+  const syncValue = (value: string) => {
+    setQuery(value);
+    if (selectedItem && getDisplayValue(selectedItem) === value) {
+      return;
+    }
+    setSelectedItem(null);
   };
 
   const clear = () => {
@@ -91,6 +98,7 @@ export function useAutocomplete<T>({
     handleInputChange,
     handleSelect,
     handleBlur,
+    syncValue,
     clear,
   };
 }

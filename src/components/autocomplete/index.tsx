@@ -30,20 +30,21 @@ export function Autocomplete<T>({
     loading,
     error: searchError,
     isOpen,
+    query,
     handleInputChange,
     handleSelect,
     handleBlur,
+    syncValue,
   } = useAutocomplete({
     searchFn,
     getDisplayValue,
   });
 
-  // Sync external value changes to the hook
   useEffect(() => {
-    if (value !== undefined) {
-      handleInputChange(value);
+    if (value !== undefined && value !== query) {
+      syncValue(value);
     }
-  }, [value, handleInputChange]);
+  }, [value, query, syncValue]);
 
   const handleInputChangeWrapper = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
@@ -85,9 +86,7 @@ export function Autocomplete<T>({
           {error}
         </span>
       )}
-      {searchError && (
-        <span className={styles.error}>{searchError}</span>
-      )}
+      {searchError && <span className={styles.error}>{searchError}</span>}
       {isOpen && suggestions.length > 0 && (
         <ul className={styles.suggestions}>
           {suggestions.map((item, index) => (
@@ -105,4 +104,3 @@ export function Autocomplete<T>({
     </div>
   );
 }
-
