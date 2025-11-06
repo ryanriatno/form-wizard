@@ -11,7 +11,10 @@
     "preview": "vite preview",
     "test": "vitest",
     "test:ui": "vitest --ui",
-    "test:coverage": "vitest --coverage"
+    "test:coverage": "vitest --coverage",
+    "server:step1": "json-server --watch db-step1.json --port 4001",
+    "server:step2": "json-server --watch db-step2.json --port 4002",
+    "server": "concurrently \"yarn server:step1\" \"yarn server:step2\""
   },
   "dependencies": {
     "react": "^18.3.1",
