@@ -4,7 +4,7 @@
   padding: 2rem 1rem;
 }
 
-.header {
+.employees__header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -13,14 +13,14 @@
   gap: 1rem;
 }
 
-.title {
+.employees__title {
   font-size: 2rem;
   font-weight: 600;
   color: #333;
   margin: 0;
 }
 
-.addButton {
+.employees__add-button {
   padding: 0.75rem 1.5rem;
   background-color: #27ae60;
   color: white;
@@ -32,11 +32,11 @@
   transition: background-color 0.2s;
 }
 
-.addButton:hover {
+.employees__add-button:hover {
   background-color: #229954;
 }
 
-.loading,
+.employees__loading,
 .error {
   text-align: center;
   padding: 2rem;
@@ -44,11 +44,11 @@
   color: #666;
 }
 
-.error {
+.employees__error {
   color: #e74c3c;
 }
 
-.retryButton {
+.employees__retry-button {
   margin-top: 1rem;
   padding: 0.5rem 1rem;
   background-color: #3498db;
@@ -58,30 +58,30 @@
   cursor: pointer;
 }
 
-.emptyState {
+.employees__empty-state {
   text-align: center;
   padding: 4rem 2rem;
   color: #666;
 }
 
-.tableWrapper {
+.employees__table-wrapper {
   overflow-x: auto;
   margin-bottom: 2rem;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.table {
+.employees__table {
   width: 100%;
   border-collapse: collapse;
   background: white;
 }
 
-.table thead {
+.employees__table thead {
   background-color: #f8f9fa;
 }
 
-.table th {
+.employees__table th {
   padding: 1rem;
   text-align: left;
   font-weight: 600;
@@ -89,28 +89,28 @@
   border-bottom: 2px solid #dee2e6;
 }
 
-.table td {
+.employees__table td {
   padding: 1rem;
   border-bottom: 1px solid #dee2e6;
   color: #333;
 }
 
-.table tbody tr:hover {
+.employees__table tbody tr:hover {
   background-color: #f8f9fa;
 }
 
-.table tbody tr:last-child td {
+.employees__table tbody tr:last-child td {
   border-bottom: none;
 }
 
-.photo {
+.employees__photo {
   width: 50px;
   height: 50px;
   object-fit: cover;
   border-radius: 4px;
 }
 
-.placeholder {
+.employees__placeholder {
   color: #999;
   font-style: italic;
 }
@@ -120,25 +120,25 @@
     padding: 1rem 0.5rem;
   }
 
-  .header {
+  .employees__header {
     flex-direction: column;
     align-items: flex-start;
   }
 
-  .title {
+  .employees__title {
     font-size: 1.5rem;
   }
 
-  .table {
+  .employees__table {
     font-size: 0.875rem;
   }
 
-  .table th,
-  .table td {
+  .employees__table th,
+  .employees__table td {
     padding: 0.75rem 0.5rem;
   }
 
-  .photo {
+  .employees__photo {
     width: 40px;
     height: 40px;
   }

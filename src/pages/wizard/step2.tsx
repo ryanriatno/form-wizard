@@ -156,12 +156,12 @@ export function Step2({ step1Data, initialData, onDataChange }: Step2Props) {
     Object.keys(errors).length === 0;
 
   return (
-    <form onSubmit={handleSubmit} className={styles.step}>
-      <h2 className={styles.stepTitle}>Step 2: Details & Submit</h2>
+    <form onSubmit={handleSubmit} className={styles["wizard__step"]}>
+      <h2 className={styles["wizard__step-title"]}>Step 2: Details & Submit</h2>
 
-      <div className={styles.formGroup}>
-        <label htmlFor="employmentType" className={styles.label}>
-          Employment Type <span className={styles.required}>*</span>
+      <div className={styles["wizard__form-group"]}>
+        <label htmlFor="employmentType" className={styles["wizard__label"]}>
+          Employment Type <span className={styles["wizard__required"]}>*</span>
         </label>
         <select
           id="employmentType"
@@ -169,8 +169,8 @@ export function Step2({ step1Data, initialData, onDataChange }: Step2Props) {
           onChange={(e) =>
             handleChange("employmentType", e.target.value as EmploymentType)
           }
-          className={`${styles.select} ${
-            errors.employmentType ? styles.inputError : ""
+          className={`${styles["wizard__select"]} ${
+            errors.employmentType ? styles["wizard__input-error"] : ""
           }`}
         >
           <option value="Full-time">Full-time</option>
@@ -179,11 +179,13 @@ export function Step2({ step1Data, initialData, onDataChange }: Step2Props) {
           <option value="Intern">Intern</option>
         </select>
         {errors.employmentType && (
-          <span className={styles.error}>{errors.employmentType}</span>
+          <span className={styles["wizard__error"]}>
+            {errors.employmentType}
+          </span>
         )}
       </div>
 
-      <div className={styles.formGroup}>
+      <div className={styles["wizard__form-group"]}>
         <Autocomplete<Location>
           value={formData.officeLocation}
           onChange={(value) => handleChange("officeLocation", value)}
@@ -197,7 +199,7 @@ export function Step2({ step1Data, initialData, onDataChange }: Step2Props) {
         />
       </div>
 
-      <div className={styles.formGroup}>
+      <div className={styles["wizard__form-group"]}>
         <label htmlFor="notes" className={styles.label}>
           Notes
         </label>
@@ -206,7 +208,7 @@ export function Step2({ step1Data, initialData, onDataChange }: Step2Props) {
           value={formData.notes}
           onChange={(e) => handleChange("notes", e.target.value)}
           rows={4}
-          className={styles.textarea}
+          className={styles["wizard__textarea"]}
           placeholder="Additional notes..."
         />
       </div>
@@ -221,11 +223,11 @@ export function Step2({ step1Data, initialData, onDataChange }: Step2Props) {
 
       {isSubmitting && <ProgressBar steps={progressSteps} />}
 
-      <div className={styles.actions}>
+      <div className={styles["wizard__actions"]}>
         <button
           type="submit"
           disabled={!isFormValid || isSubmitting}
-          className={styles.buttonPrimary}
+          className={styles["wizard__button-primary"]}
         >
           {isSubmitting ? "Submitting..." : "Submit"}
         </button>

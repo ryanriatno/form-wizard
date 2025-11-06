@@ -4,7 +4,7 @@
   padding: 2rem 1rem;
 }
 
-.wizardHeader {
+.wizard__header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -13,20 +13,20 @@
   gap: 1rem;
 }
 
-.wizardTitle {
+.wizard__title {
   font-size: 2rem;
   font-weight: 600;
   color: #333;
   margin: 0;
 }
 
-.wizardMeta {
+.wizard__meta {
   display: flex;
   align-items: center;
   gap: 1rem;
 }
 
-.roleBadge {
+.wizard__role-badge {
   padding: 0.5rem 1rem;
   background-color: #3498db;
   color: white;
@@ -35,7 +35,7 @@
   font-weight: 500;
 }
 
-.clearDraftButton {
+.wizard__clear-draft-button {
   padding: 0.5rem 1rem;
   border: 1px solid #e74c3c;
   border-radius: 4px;
@@ -46,11 +46,11 @@
   transition: background-color 0.2s;
 }
 
-.clearDraftButton:hover {
+.wizard__clear-draft-button:hover {
   background-color: #fee;
 }
 
-.stepIndicator {
+.wizard__step-indicator {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -58,7 +58,7 @@
   gap: 0.5rem;
 }
 
-.stepDot {
+.wizard__step-dot {
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 50%;
@@ -71,54 +71,54 @@
   transition: all 0.3s;
 }
 
-.stepDot.active {
+.wizard__step-dot.active {
   background-color: #3498db;
   color: white;
 }
 
-.stepLine {
+.wizard__step-line {
   width: 4rem;
   height: 2px;
   background-color: #e0e0e0;
 }
 
-.wizardContent {
+.wizard__content {
   background: white;
   border-radius: 8px;
   padding: 2rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.step {
+.wizard__step {
   width: 100%;
 }
 
-.stepTitle {
+.wizard__step-title {
   font-size: 1.5rem;
   font-weight: 600;
   color: #333;
   margin-bottom: 2rem;
 }
 
-.formGroup {
+.wizard__form-group {
   margin-bottom: 1.5rem;
 }
 
-.label {
+.wizard__label {
   display: block;
   margin-bottom: 0.5rem;
   font-weight: 500;
   color: #333;
 }
 
-.required {
+.wizard__required {
   color: #e74c3c;
   margin-left: 0.25rem;
 }
 
-.input,
-.select,
-.textarea {
+.wizard__input,
+.wizard__select,
+.wizard__textarea {
   width: 100%;
   padding: 0.75rem;
   border: 1px solid #ddd;
@@ -128,18 +128,18 @@
   transition: border-color 0.2s;
 }
 
-.input:focus,
-.select:focus,
-.textarea:focus {
+.wizard__input:focus,
+.wizard__select:focus,
+.wizard__textarea:focus {
   outline: none;
   border-color: #3498db;
 }
 
-.inputError {
+.wizard__input-error {
   border-color: #e74c3c;
 }
 
-.inputReadonly {
+.wizard__input-readonly {
   width: 100%;
   padding: 0.75rem;
   border: 1px solid #ddd;
@@ -150,26 +150,26 @@
   cursor: not-allowed;
 }
 
-.textarea {
+.wizard__textarea {
   resize: vertical;
   min-height: 100px;
 }
 
-.error {
+.wizard__error {
   display: block;
   margin-top: 0.25rem;
   font-size: 0.875rem;
   color: #e74c3c;
 }
 
-.actions {
+.wizard__actions {
   display: flex;
   justify-content: flex-end;
   gap: 1rem;
   margin-top: 2rem;
 }
 
-.buttonPrimary {
+.wizard__button-primary {
   padding: 0.75rem 2rem;
   background-color: #3498db;
   color: white;
@@ -181,11 +181,11 @@
   transition: background-color 0.2s;
 }
 
-.buttonPrimary:hover:not(:disabled) {
+.wizard__button-primary:hover:not(:disabled) {
   background-color: #2980b9;
 }
 
-.buttonPrimary:disabled {
+.wizard__button-primary:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
@@ -195,26 +195,26 @@
     padding: 1rem 0.5rem;
   }
 
-  .wizardHeader {
+  .wizard__header {
     flex-direction: column;
     align-items: flex-start;
   }
 
-  .wizardTitle {
+  .wizard__title {
     font-size: 1.5rem;
   }
 
-  .wizardContent {
+  .wizard__content {
     padding: 1.5rem 1rem;
   }
 
-  .stepTitle {
+  .wizard__step-title {
     font-size: 1.25rem;
   }
 
-  .input,
-  .select,
-  .textarea {
+  .wizard__input,
+  .wizard__select,
+  .wizard__textarea {
     font-size: 16px; /* Prevents zoom on iOS */
   }
 }
@@ -224,4 +224,3 @@
     max-width: 1000px;
   }
 }
-

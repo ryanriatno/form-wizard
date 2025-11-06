@@ -75,52 +75,56 @@ export function Step1({ initialData, onNext, onDataChange }: Step1Props) {
     Object.keys(errors).length === 0;
 
   return (
-    <form onSubmit={handleSubmit} className={styles.step}>
-      <h2 className={styles.stepTitle}>Step 1: Basic Information</h2>
+    <form onSubmit={handleSubmit} className={styles["wizard__step"]}>
+      <h2 className={styles["wizard__step-title"]}>
+        Step 1: Basic Information
+      </h2>
 
-      <div className={styles.formGroup}>
-        <label htmlFor="fullName" className={styles.label}>
-          Full Name <span className={styles.required}>*</span>
+      <div className={styles["wizard__form-group"]}>
+        <label htmlFor="fullName" className={styles["wizard__label"]}>
+          Full Name <span className={styles["wizard__required"]}>*</span>
         </label>
         <input
           id="fullName"
           type="text"
           value={formData.fullName}
           onChange={(e) => handleChange("fullName", e.target.value)}
-          className={`${styles.input} ${
-            errors.fullName ? styles.inputError : ""
+          className={`${styles["wizard__input"]} ${
+            errors.fullName ? styles["wizard__input-error"] : ""
           }`}
           aria-invalid={!!errors.fullName}
           aria-describedby={errors.fullName ? "fullName-error" : undefined}
         />
         {errors.fullName && (
-          <span id="fullName-error" className={styles.error}>
+          <span id="fullName-error" className={styles["wizard__error"]}>
             {errors.fullName}
           </span>
         )}
       </div>
 
-      <div className={styles.formGroup}>
-        <label htmlFor="email" className={styles.label}>
-          Email <span className={styles.required}>*</span>
+      <div className={styles["wizard__form-group"]}>
+        <label htmlFor="email" className={styles["wizard__label"]}>
+          Email <span className={styles["wizard__required"]}>*</span>
         </label>
         <input
           id="email"
           type="email"
           value={formData.email}
           onChange={(e) => handleChange("email", e.target.value)}
-          className={`${styles.input} ${errors.email ? styles.inputError : ""}`}
+          className={`${styles["wizard__input"]} ${
+            errors.email ? styles["wizard__input-error"] : ""
+          }`}
           aria-invalid={!!errors.email}
           aria-describedby={errors.email ? "email-error" : undefined}
         />
         {errors.email && (
-          <span id="email-error" className={styles.error}>
+          <span id="email-error" className={styles["wizard__error"]}>
             {errors.email}
           </span>
         )}
       </div>
 
-      <div className={styles.formGroup}>
+      <div className={styles["wizard__form-group"]}>
         <Autocomplete<Department>
           value={formData.department}
           onChange={(value) => handleChange("department", value)}
@@ -134,26 +138,30 @@ export function Step1({ initialData, onNext, onDataChange }: Step1Props) {
         />
       </div>
 
-      <div className={styles.formGroup}>
-        <label htmlFor="role" className={styles.label}>
-          Role <span className={styles.required}>*</span>
+      <div className={styles["wizard__form-group"]}>
+        <label htmlFor="role" className={styles["wizard__label"]}>
+          Role <span className={styles["wizard__required"]}>*</span>
         </label>
         <select
           id="role"
           value={formData.role}
           onChange={(e) => handleChange("role", e.target.value as Role)}
-          className={`${styles.select} ${errors.role ? styles.inputError : ""}`}
+          className={`${styles["wizard__select"]} ${
+            errors.role ? styles["wizard__input-error"] : ""
+          }`}
         >
           <option value="Ops">Ops</option>
           <option value="Admin">Admin</option>
           <option value="Engineer">Engineer</option>
           <option value="Finance">Finance</option>
         </select>
-        {errors.role && <span className={styles.error}>{errors.role}</span>}
+        {errors.role && (
+          <span className={styles["wizard__error"]}>{errors.role}</span>
+        )}
       </div>
 
-      <div className={styles.formGroup}>
-        <label htmlFor="employeeId" className={styles.label}>
+      <div className={styles["wizard__form-group"]}>
+        <label htmlFor="employeeId" className={styles["wizard__label"]}>
           Employee ID
         </label>
         <input
@@ -161,16 +169,16 @@ export function Step1({ initialData, onNext, onDataChange }: Step1Props) {
           type="text"
           value={employeeId}
           readOnly
-          className={styles.inputReadonly}
+          className={styles["wizard__input-readonly"]}
           aria-label="Auto-generated Employee ID"
         />
       </div>
 
-      <div className={styles.actions}>
+      <div className={styles["wizard__actions"]}>
         <button
           type="submit"
           disabled={!isFormValid}
-          className={styles.buttonPrimary}
+          className={styles["wizard__button-primary"]}
         >
           Next
         </button>

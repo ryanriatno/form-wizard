@@ -86,7 +86,7 @@ export default function Employees() {
   if (loading) {
     return (
       <div className={styles.employees}>
-        <div className={styles.loading}>Loading employees...</div>
+        <div className={styles["employees__loading"]}>Loading employees...</div>
       </div>
     );
   }
@@ -94,8 +94,11 @@ export default function Employees() {
   if (error) {
     return (
       <div className={styles.employees}>
-        <div className={styles.error}>{error}</div>
-        <button onClick={fetchEmployees} className={styles.retryButton}>
+        <div className={styles["employees__error"]}>{error}</div>
+        <button
+          onClick={fetchEmployees}
+          className={styles["employees__retry-button"]}
+        >
           Retry
         </button>
       </div>
@@ -104,24 +107,30 @@ export default function Employees() {
 
   return (
     <div className={styles.employees}>
-      <div className={styles.header}>
-        <h1 className={styles.title}>Employees</h1>
-        <button onClick={handleAddEmployee} className={styles.addButton}>
+      <div className={styles["employees__header"]}>
+        <h1 className={styles["employees__title"]}>Employees</h1>
+        <button
+          onClick={handleAddEmployee}
+          className={styles["employees__add-button"]}
+        >
           + Add Employee
         </button>
       </div>
 
       {employees.length === 0 ? (
-        <div className={styles.emptyState}>
+        <div className={styles["employees__empty_state"]}>
           <p>No employees found.</p>
-          <button onClick={handleAddEmployee} className={styles.addButton}>
+          <button
+            onClick={handleAddEmployee}
+            className={styles["employees__add-button"]}
+          >
             + Add Employee
           </button>
         </div>
       ) : (
         <>
-          <div className={styles.tableWrapper}>
-            <table className={styles.table}>
+          <div className={styles["employees__table-wrapper"]}>
+            <table className={styles["employees__table"]}>
               <thead>
                 <tr>
                   <th>Photo</th>
@@ -139,10 +148,12 @@ export default function Employees() {
                         <img
                           src={employee.photo}
                           alt={employee.fullName}
-                          className={styles.photo}
+                          className={styles["employees__photo"]}
                         />
                       ) : (
-                        <span className={styles.placeholder}>—</span>
+                        <span className={styles["employees__placeholder"]}>
+                          —
+                        </span>
                       )}
                     </td>
                     <td>{employee.fullName || "—"}</td>

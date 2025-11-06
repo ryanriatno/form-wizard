@@ -81,36 +81,36 @@ export default function Wizard() {
 
   return (
     <div className={styles.wizard}>
-      <div className={styles.wizardHeader}>
-        <h1 className={styles.wizardTitle}>Employee Wizard</h1>
-        <div className={styles.wizardMeta}>
-          <span className={styles.roleBadge}>
+      <div className={styles.wizard__header}>
+        <h1 className={styles.wizard__title}>Employee Wizard</h1>
+        <div className={styles.wizard__meta}>
+          <span className={styles["wizard__role-badge"] as string}>
             Role: {role === "admin" ? "Admin" : "Ops"}
           </span>
           <button
             type="button"
             onClick={handleClearDraft}
-            className={styles.clearDraftButton}
+            className={styles["wizard__clear-draft-button"]}
           >
             Clear Draft
           </button>
         </div>
       </div>
 
-      <div className={styles.stepIndicator}>
+      <div className={styles["wizard__step-indicator"]}>
         {role === "admin" && (
           <>
             <div
-              className={`${styles.stepDot} ${
-                currentStep >= 1 ? styles.active : ""
+              className={`${styles["wizard__step-dot"]} ${
+                currentStep >= 1 ? styles["wizard__step-dot--active"] : ""
               }`}
             >
               1
             </div>
-            <div className={styles.stepLine} />
+            <div className={styles["wizard__step-line"]} />
             <div
-              className={`${styles.stepDot} ${
-                currentStep >= 2 ? styles.active : ""
+              className={`${styles["wizard__step-dot"]} ${
+                currentStep >= 2 ? styles["wizard__step-dot--active"] : ""
               }`}
             >
               2
@@ -118,11 +118,15 @@ export default function Wizard() {
           </>
         )}
         {role === "ops" && (
-          <div className={`${styles.stepDot} ${styles.active}`}>2</div>
+          <div
+            className={`${styles["wizard__step-dot"]} ${styles["wizard__step-dot--active"]}`}
+          >
+            2
+          </div>
         )}
       </div>
 
-      <div className={styles.wizardContent}>
+      <div className={styles["wizard__content"]}>
         {currentStep === 1 && role === "admin" && (
           <Step1
             initialData={step1Draft}
