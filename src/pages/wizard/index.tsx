@@ -158,6 +158,7 @@ export default function Wizard() {
             }
             initialData={step2Draft}
             onDataChange={handleStep2DataChange}
+            role={role}
           />
         )}
       </div>

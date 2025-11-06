@@ -25,6 +25,10 @@ vi.mock("@/hooks/useFormValidation", () => ({
   useFormValidation: vi.fn(),
 }));
 
+vi.mock("@/services/storage", () => ({
+  clearDraft: vi.fn(),
+}));
+
 interface AutocompleteMockProps {
   value: string;
   onChange: (value: string) => void;
@@ -86,11 +90,13 @@ vi.mock("@/components/fileUpload", () => ({
 }));
 
 import { useNavigate, type NavigateFunction } from "react-router-dom";
+import * as storage from "@/services/storage";
 
 const mockNavigate = vi.mocked(useNavigate);
 const mockPostBasicInfo = vi.mocked(api.postBasicInfo);
 const mockPostDetails = vi.mocked(api.postDetails);
 const mockUseFormValidation = vi.mocked(useFormValidation);
+const mockClearDraft = vi.mocked(storage.clearDraft);
 
 describe("Step2 - Submit Flow", () => {
   const mockStep1Data = {
@@ -107,6 +113,7 @@ describe("Step2 - Submit Flow", () => {
     step1Data: mockStep1Data,
     initialData: undefined,
     onDataChange: mockOnDataChange,
+    role: "admin" as const,
   };
 
   beforeEach(() => {
@@ -267,6 +274,40 @@ describe("Step2 - Submit Flow", () => {
       await waitFor(
         () => {
           expect(navigateFn).toHaveBeenCalledWith("/employees");
+        },
+        { timeout: 2000 }
+      );
+    });
+
+    it("should clear draft after successful submission", async () => {
+      const user = userEvent.setup({ delay: null });
+      const navigateFn = vi.fn();
+      mockNavigate.mockReturnValue(navigateFn);
+
+      renderStep2();
+
+      const locationInput = screen.getByTestId("location-input");
+      await user.type(locationInput, "Jakarta");
+
+      const submitButton = screen.getByRole("button", { name: /submit/i });
+
+      await waitFor(() => {
+        expect(submitButton).not.toBeDisabled();
+      });
+
+      await user.click(submitButton);
+
+      await waitFor(
+        () => {
+          expect(mockPostBasicInfo).toHaveBeenCalled();
+          expect(mockPostDetails).toHaveBeenCalled();
+        },
+        { timeout: 5000 }
+      );
+
+      await waitFor(
+        () => {
+          expect(mockClearDraft).toHaveBeenCalledWith("admin");
         },
         { timeout: 2000 }
       );

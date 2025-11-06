@@ -8,6 +8,7 @@ import {
   useFormValidation,
   type ValidationErrors,
 } from "@/hooks/useFormValidation";
+import { clearDraft, type RoleType } from "@/services/storage";
 import type {
   Location,
   EmploymentType,
@@ -34,9 +35,15 @@ interface Step2Props {
   };
   initialData?: Partial<Step2Data>;
   onDataChange: (data: Partial<Step2Data>) => void;
+  role: RoleType;
 }
 
-export function Step2({ step1Data, initialData, onDataChange }: Step2Props) {
+export function Step2({
+  step1Data,
+  initialData,
+  onDataChange,
+  role,
+}: Step2Props) {
   const navigate = useNavigate();
   const [formData, setFormData] = useState<Step2Data>({
     employmentType: initialData?.employmentType || "Full-time",
@@ -129,6 +136,9 @@ export function Step2({ step1Data, initialData, onDataChange }: Step2Props) {
         updated[4] = { ...updated[4], status: "completed" };
         return updated;
       });
+
+      // Clear draft and localStorage after successful submission
+      clearDraft(role);
 
       // Redirect after a brief delay
       setTimeout(() => {
