@@ -10,7 +10,6 @@ interface ProgressBarProps {
 }
 
 export function ProgressBar({ steps }: ProgressBarProps) {
-  console.log(steps);
   return (
     <div className={styles.progressBar}>
       {steps.map((step, index) => (
